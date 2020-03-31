@@ -3,6 +3,10 @@ const MessageModel = require('../../database/models/message');
 
 let msgCollectorFilter = (newMsg, originalMsg) => newMsg.author.id === originalMsg.author.id;
 module.exports = {
+    name: "addreaction",
+    category: "Commandes de rôle",
+    aliases: [],
+    description: 'Enables a message to listen to reactions to give roles.',
     run: async(client, message, args) => {
         if(args.split(/\s+/).length !== 1) {
             let msg = await message.channel.send("Too many arguments. Must only provide 1 message id");
