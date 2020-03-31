@@ -25,7 +25,7 @@ client.on("ready", () => {
         status: "online",
         game: {
             name: "/help | by SonMaxime",
-            type: "STREAMING"
+            type: "WATCHING"
         }
     }); 
 });
