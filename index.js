@@ -49,13 +49,20 @@ client.on('guildCreate', async (guild) => {
     guild.owner.send({embed});
 })
 
-client.on('guildMemberAdd', (member) => {
-    member.createDM()
-      .then((channel) => {
-        channel.send(`Bienvenue sur le serveur : ${member.displayName} :sunglasses:`);
-      })
-      .catch();
-  });
+client.on('guildMemberAdd', member =>{
+    let embed = new RichEmbed()
+        .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
+        .setFooter('Nous sommes maintenant ' + member.guild.memberCount + '.')
+    member.guild.channels.get('690550169615204413').send(embed)
+});
+
+client.on('guildMemberRemove', member =>{
+    let embed = new RichEmbed()
+        .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name + '.')
+        .setFooter('Nous sommes maintenant ' + member.guild.memberCount)
+    member.guild.channels.get('690550169615204413').send(embed)
+ 
+});
 
 client.on("message", async message => {
     const prefix = "/";
