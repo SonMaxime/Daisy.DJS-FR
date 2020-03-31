@@ -64,6 +64,33 @@ client.on('guildMemberRemove', member =>{
  
 });
 
+client.on('ready', () => {
+    let myGuild = client.guilds.get('690549564620537889');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('694569846741926028');
+    memberCountChannel.setName("Membres : " + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
+client.on('guildMemberAdd', member => {
+    let myGuild = client.guilds.get('690549564620537889');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('694569846741926028');
+    memberCountChannel.setName("Membres : " + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
+client.on('guildMemberRemove', member => {
+    let myGuild = client.guilds.get('690549564620537889');
+    let memberCount = myGuild.memberCount;
+    let memberCountChannel = myGuild.channels.get('694569846741926028');
+    memberCountChannel.setName("Membres : " + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
 client.on("message", async message => {
     const prefix = "/";
 
