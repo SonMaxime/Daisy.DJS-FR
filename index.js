@@ -54,6 +54,7 @@ client.on('guildMemberAdd', member =>{
         .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount + '.')
     member.guild.channels.get('690550169615204413').send(embed)
+    member.addRole('690550415259074560')
 });
 
 client.on('guildMemberRemove', member =>{
