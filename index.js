@@ -90,7 +90,7 @@ client.on('guildMemberRemove', member => {
 });
 
 client.on("message", async message => {
-    const prefix = "/";
+    const prefix = ".";
 
     if (message.author.bot) return;
     if (!message.guild) return;
