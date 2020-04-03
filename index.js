@@ -5,6 +5,8 @@ const client = new Client({
     disableEveryone: true
 });
 
+const prefix = ".";
+
 client.commands = new Collection();
 client.aliases = new Collection();
 
@@ -102,7 +104,6 @@ client.on("message", (message) => {
 });
 
 client.on("message", async message => {
-    const prefix = ".";
 
     if (message.author.bot) return;
     if (!message.guild) return;
