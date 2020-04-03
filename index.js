@@ -54,7 +54,6 @@ client.on('guildMemberAdd', member =>{
         .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount + '.')
     member.guild.channels.get('690550169615204413').send(embed)
-    member.addRole('690550415259074560')
 });
 
 client.on('guildMemberRemove', member =>{
@@ -87,6 +86,19 @@ client.on('guildMemberRemove', member => {
     let memberCountChannel = myGuild.channels.get('694569846741926028');
     memberCountChannel.setName("Membres : " + memberCount)
     .catch(error => console.log(error));
+});
+
+client.on("message", (message) => {
+  if (message.content == (prefix + "verify")) {
+    message.delete();
+    message.channel.send("C'est bon tu peux passer. :tada:").then(msg => {
+      msg.delete(2000);
+      setTimeout(() => {
+        message.member.removeRole(message.guild.roles.find(role => role.name === "Verifying"));
+        message.member.addRole('690552702110924801');
+      });
+    });
+  }
 });
 
 client.on("message", async message => {
