@@ -1,14 +1,37 @@
 const { Client, Collection, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
-const fs = require("fs");
+const fs = require('fs');
+const antispam = require('better-discord-antispam');
 const client = new Client({
     disableEveryone: true
+});
+
+client.on('ready', () => {
+     antispam(client, {
+          limitUntilWarn: 2,
+          limitUntilMuted: 3,
+          interval: 2000,
+          warningMessage: "Si vous n’arrêtez pas de spammer, je vais vous punir !",
+          muteMessage: "a été mis en sourdine car nous n’aimons pas trop les gens de type spammeur.",
+          maxDuplicatesWarning: 3,
+          maxDuplicatesMute: 4,
+          ignoredRoles: ["Admin"], 
+          ignoredMembers: ["SonMaxime.#9355"],
+          mutedRole: "Muté",
+          timeMuted: 1000 * 600,
+          logChannel: "reports"
+        });
+});
+
+client.on('message', msg => {
+    client.emit('checkMessage', msg);
 });
 
 const prefix = ".";
 
 client.commands = new Collection();
 client.aliases = new Collection();
+
 
 client.categories = fs.readdirSync("./commandes/");
 
@@ -20,6 +43,8 @@ config({
     require(`./handlers/${handler}`)(client);
 });
 
+    // Mise en ligne du bot
+
 client.on("ready", () => {
     console.log(`Hey, ${client.user.username} est en ligne`);
 
@@ -27,44 +52,29 @@ client.on("ready", () => {
         status: "online",
         game: {
             name: ".help | by SonMaxime",
-            type: "WATCHING"
+            type: "STREAMING"
         }
     }); 
 });
 
-client.on('guildCreate', async (guild) => {
-    if (!guild.available) return;
+   // Système d'ajout de rôle et de bienvenue automatique
 
-    const embed = new MessageEmbed({
-        author: {
-            name: "Hello, I'm Daisy !",
-            iconURL: client.user.displayAvatarURL()
-        },
-        description: `Tu viens de m'ajouter à **${guild.name}**.\n\n Je suis un bot créé par SonMaxime.#9355`,
-
-        timestamp: moment().format('LLL'),
-        footer: {
-            text: client.user.tag
-        }
-    });
-
-    guild.owner.send({embed});
-})
-
-client.on('guildMemberAdd', member =>{
+client.on('guildMemberAdd', member => {
     let embed = new RichEmbed()
         .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount + '.')
     member.guild.channels.get('690550169615204413').send(embed)
 });
 
-client.on('guildMemberRemove', member =>{
+client.on('guildMemberRemove', member => {
     let embed = new RichEmbed()
         .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name + '.')
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount)
     member.guild.channels.get('690550169615204413').send(embed)
  
 });
+
+    // Système de comptage de membre dans un salon vocal
 
 client.on('ready', () => {
     let myGuild = client.guilds.get('690549564620537889');
@@ -90,6 +100,10 @@ client.on('guildMemberRemove', member => {
     .catch(error => console.log(error));
 });
 
+client.on("guildMemberAdd", (member) => {
+  member.addRole(member.guild.roles.find(role => role.name === "Verifying"));
+});
+
 client.on("message", (message) => {
   if (message.content == (prefix + "verify")) {
     message.delete();
@@ -102,6 +116,8 @@ client.on("message", (message) => {
     });
   }
 });
+
+    // Système d'execution de commande
 
 client.on("message", async message => {
 
