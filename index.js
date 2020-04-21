@@ -1,30 +1,8 @@
 const { Client, Collection, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require('fs');
-const antispam = require('better-discord-antispam');
 const client = new Client({
     disableEveryone: true
-});
-
-client.on('ready', () => {
-     antispam(client, {
-          limitUntilWarn: 2,
-          limitUntilMuted: 3,
-          interval: 2000,
-          warningMessage: "Si vous n’arrêtez pas de spammer, je vais vous punir !",
-          muteMessage: "a été mis en sourdine car nous n’aimons pas trop les gens de type spammeur.",
-          maxDuplicatesWarning: 3,
-          maxDuplicatesMute: 4,
-          ignoredRoles: ["Admin"], 
-          ignoredMembers: ["SonMaxime.#9355"],
-          mutedRole: "Muté",
-          timeMuted: 1000 * 600,
-          logChannel: "reports"
-        });
-});
-
-client.on('message', msg => {
-    client.emit('checkMessage', msg);
 });
 
 const prefix = ".";
