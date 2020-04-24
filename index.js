@@ -121,14 +121,15 @@ client.on('message', message => {
     else {
       ++msgCount;
       if(parseInt(msgCount) === LIMIT) {
-        const dRole = message.guild.roles.cache.get('');
         const role = message.guild.roles.cache.get('');
-        message.member.roles.delete(dRole);
-        message.member.roles.add(role);
-        message.channel.send('You have been muted.');
+        const mute = message.guild.roles.cache.get('');
+        message.member.roles.remove(role);
+        message.member.roles.add(mute);
+        message.channel.send('Vous avez été mute.');
         setTimeout(() => {
-          message.member.roles.remove(role);
-          message.channel.send('You have been unmuted');
+          message.member.roles.remove(mute);
+          messgae.member.roles.add(role);
+          message.channel.send('Vous avez été unmute.');
         }, TIME);
       } else {
         userData.msgCount = msgCount;
