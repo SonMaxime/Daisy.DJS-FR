@@ -18,8 +18,7 @@
     "request": "^2.88.0",
     "circular-json": "^0.5.9",
     "superagent": "^5.2.2",
-    "node-superfetch": "^0.1.10",
-    "better-discord-antispam": "^1.0.6"
+    "node-superfetch": "^0.1.10"
   },
   "devDependencies": {},
   "description": ""
