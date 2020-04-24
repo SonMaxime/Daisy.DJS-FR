@@ -123,6 +123,7 @@ client.on('message', message => {
       if(parseInt(msgCount) === LIMIT) {
         const dRole = message.guild.roles.cache.get('');
         const role = message.guild.roles.cache.get('');
+        message.member.roles.delete(dRole);
         message.member.roles.add(role);
         message.channel.send('You have been muted.');
         setTimeout(() => {
