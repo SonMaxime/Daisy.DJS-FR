@@ -121,8 +121,8 @@ client.on('message', message => {
     else {
       ++msgCount;
       if(parseInt(msgCount) === LIMIT) {
-        const role = message.guild.roles.cache.get('');
-        const mute = message.guild.roles.cache.get('');
+        const role = message.guild.roles.cache.get('690552702110924801');
+        const mute = message.guild.roles.cache.get('695258065984815135');
         message.member.roles.remove(role);
         message.member.roles.add(mute);
         message.channel.send('Vous avez été mute.');
