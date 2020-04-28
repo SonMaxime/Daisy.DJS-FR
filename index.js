@@ -2,7 +2,6 @@
 const { Client, Collection, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require('fs');
-const antispam = require('discord-antispam-fr');
 const client = new Client({
     disableEveryone: true
 });
@@ -120,27 +119,6 @@ client.on("message", async message => {
 
     if (command) 
         command.run(client, message, args);
-});
-
-client.on('ready', () => {
-   antispam(client, {
-        limitUntilWarn: 3, 
-        limitUntilMuted: 5, 
-        interval: 2000,
-        warningMessage: "Si vous n’arrêtez pas de spammer, je vais vous punir !", 
-        muteMessage: "a été mis en sourdine car nous n’aimons pas trop les gens de type spammeur...", 
-        maxDuplicatesWarning: 7,
-        maxDuplicatesMute: 10,
-        ignoredRoles: ["Admin"],
-        ignoredMembers: ["SonMaxime.#9355"],
-        mutedRole: "muted",
-        timeMuted: 1000 * 600,
-        logChannel: "reports" 
-      });
-});
- 
-client.on('message', msg => {
-  client.emit('checkMessage', msg);
 });
 
 client.login(process.env.TOKEN);
