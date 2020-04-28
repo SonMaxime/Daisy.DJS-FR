@@ -1,11 +1,15 @@
+// Variables 
 const { Client, Collection, RichEmbed } = require("discord.js");
 const { config } = require("dotenv");
 const fs = require('fs');
+const antispam = require('discord-antispam-fr');
 const client = new Client({
     disableEveryone: true
 });
 
 const prefix = ".";
+
+   // Chargement des commandes
 
 client.commands = new Collection();
 client.aliases = new Collection();
@@ -25,6 +29,7 @@ config({
 
 client.on("ready", () => {
     console.log(`Hey, ${client.user.username} est en ligne`);
+
     client.user.setPresence({
         status: "online",
         game: {
@@ -33,8 +38,7 @@ client.on("ready", () => {
         }
     }); 
 });
-
-   // Système d'ajout de rôle et de bienvenue automatique
+   // Système de bienvenue automatique
 
 client.on('guildMemberAdd', member => {
     let embed = new RichEmbed()
@@ -77,6 +81,9 @@ client.on('guildMemberRemove', member => {
     .catch(error => console.log(error));
 });
 
+
+    // Système de validation de réglement
+
 client.on("guildMemberAdd", (member) => {
   member.addRole(member.guild.roles.find(role => role.name === "Verifying"));
 });
@@ -90,60 +97,6 @@ client.on("message", (message) => {
         message.member.removeRole(message.guild.roles.find(role => role.name === "Verifying"));
         message.member.addRole('690552702110924801');
       });
-    });
-  }
-});
-
-const usersMap = new Map();
-const LIMIT = 5;
-const TIME = 7000;
-const DIFF = 3000;
-
-client.on('message', message => {
-  if(message.author.bot) return;
-  if(usersMap.has(message.author.id)) {
-    const userData = usersMap.get(message.author.id);
-    const { lastMessage, timer } = userData;
-    const difference = message.createdTimestamp - lastMessage.createdTimestamp;
-    let msgCount = userData.msgCount;
-    console.log(difference);
-    if(difference > DIFF) {
-      clearTimeout(timer);
-      console.log('Cleared timeout');
-      userData.msgCount = 1;
-      userData.lastMessage = message;
-      userData.timer = setTimeout(() => {
-        usersMap.delete(message.author.id);
-        console.log('Removed from RESET.');
-      }, TIME);
-      usersMap.set(message.author.id, userData);
-    }
-    else {
-      ++msgCount;
-      if(parseInt(msgCount) === LIMIT) {
-        message.member.removeRole('690552702110924801');
-        message.member.addRole('6695258065984815135');
-        message.channel.send('Vous avez été mute.');
-        setTimeout(() => {
-        message.member.removeRole('6695258065984815135');
-        message.member.addRole('690552702110924801');
-        message.channel.send('Vous avez été unmute.');
-        }, TIME);
-      } else {
-        userData.msgCount = msgCount;
-        usersMap.set(message.author.id, userData);
-      }
-    }
-  }
-  else {
-    let fn = setTimeout(() => {
-      usersMap.delete(message.author.id);
-      console.log('Removed from map.');
-    }, TIME);
-    usersMap.set(message.author.id, {
-      msgCount: 1,
-      lastMessage: message,
-      timer: fn
     });
   }
 });
@@ -167,6 +120,27 @@ client.on("message", async message => {
 
     if (command) 
         command.run(client, message, args);
+});
+
+client.on('ready', () => {
+   antispam(client, {
+        limitUntilWarn: 3, 
+        limitUntilMuted: 5, 
+        interval: 2000,
+        warningMessage: "Si vous n’arrêtez pas de spammer, je vais vous punir !", 
+        muteMessage: "a été mis en sourdine car nous n’aimons pas trop les gens de type spammeur...", 
+        maxDuplicatesWarning: 7,
+        maxDuplicatesMute: 10,
+        ignoredRoles: ["Admin"],
+        ignoredMembers: ["SonMaxime.#9355"],
+        mutedRole: "muted",
+        timeMuted: 1000 * 600,
+        logChannel: "reports" 
+      });
+});
+ 
+client.on('message', msg => {
+  client.emit('checkMessage', msg);
 });
 
 client.login(process.env.TOKEN);
