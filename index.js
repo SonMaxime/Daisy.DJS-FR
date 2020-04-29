@@ -1,5 +1,5 @@
-// Variables 
 const { Client, Collection, RichEmbed } = require("discord.js");
+const antispam = require('discord-antispam-fr');
 const { config } = require("dotenv");
 const fs = require('fs');
 const client = new Client({
@@ -36,6 +36,29 @@ client.on("ready", () => {
             type: "STREAMING"
         }
     }); 
+});
+
+// anti spam fonction
+
+client.on('ready', () => {
+     antispam(client, {
+          limitUntilWarn: 3,
+          limitUntilMuted: 5,
+          interval: 2000,
+          warningMessage: "if you don't stop from spamming, I'm going to punish you!",
+          muteMessage: "was muted since we don't like too much advertisement type people!",
+          maxDuplicatesWarning: 7,
+          maxDuplicatesMute: 10,
+          ignoredRoles: ["Admin"],
+          ignoredMembers: ["SonMaxime.#9355"],
+          mutedRole: "Muté",
+          timeMuted: 1000 * 600,
+          logChannel: "reports"
+        });
+  });
+   
+  client.on('message', msg => {
+    client.emit('checkMessage', msg);
 });
    // Système de bienvenue automatique
 
