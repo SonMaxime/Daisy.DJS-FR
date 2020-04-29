@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "ascii-table": "0.0.9",
+    "better-discord-antispam-fr": "^2.0.0",
     "circular-json": "^0.5.9",
     "common-tags": "^1.8.0",
     "discord-antispam-fr": "^2.0.0",
