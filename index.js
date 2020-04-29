@@ -1,5 +1,5 @@
 const { Client, Collection, RichEmbed } = require("discord.js");
-const antispam = require('discord-antispam-fr');
+const antispam = require('better-discord-antispam-fr');
 const { config } = require("dotenv");
 const fs = require('fs');
 const client = new Client({
