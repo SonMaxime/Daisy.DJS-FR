@@ -2,6 +2,7 @@ const { Client, Collection, RichEmbed } = require("discord.js");
 const antispam = require('better-discord-antispam-fr');
 const { config } = require("dotenv");
 const fs = require('fs');
+let xp = require("./xp.json");
 const client = new Client({
     disableEveryone: true
 });
