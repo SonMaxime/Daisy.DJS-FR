@@ -4,11 +4,12 @@ const { promptMessage } = require("../../functions.js");
 
 module.exports = {
     name: "ban",
+    cooldown: 0,
     category: "Commandes de modération",
     description: "Bannis un membre",
     usage: "<id | mention>",
     run: async (client, message, args) => {
-        const logChannel = message.guild.channels.find(c => c.name === "BanReports") || message.channel;
+        const logChannel = message.guild.channels.find(c => c.name === "reports") || message.channel;
 
         if (message.deletable) message.delete();
 
@@ -23,7 +24,7 @@ module.exports = {
         }
 
         if (!message.member.hasPermission("BAN_MEMBERS")) {
-            return message.reply("❌ Vous n'avez mast la permission de bannir un membre.Si le cas est urgent merci de contacter un modérateur.")
+            return message.reply("❌ Vous n'avez pas la permission de bannir un membre.Si le cas est urgent merci de contacter un modérateur.")
                 .then(m => m.delete(5000));
         
         }
@@ -63,6 +64,7 @@ module.exports = {
             .setColor("GREEN")
             .setAuthor(`Cette verification expire dans 30s.`)
             .setDescription(`Voulez vous bannir ${toBan}?`)
+            .setImage('https://media.discordapp.net/attachments/702532914151161906/707153482670538752/ezgif.com-add-text.gif')
 
         await message.channel.send(promptEmbed).then(async msg => {
             const emoji = await promptMessage(msg, message.author, 30, ["✅", "❌"]);
@@ -79,7 +81,7 @@ module.exports = {
             } else if (emoji === "❌") {
                 msg.delete();
 
-                message.reply(`ban canceled.`)
+                message.reply(`Ban annué.`)
                     .then(m => m.delete(10000));
             }
         });
