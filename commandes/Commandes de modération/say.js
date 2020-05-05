@@ -16,7 +16,7 @@ module.exports = {
         if (args.length < 0)
             return message.reply("Rien a dire ?").then(m => m.delete(5000));
 
-        const roleColor = message.guild.me.highestRole.hexColor;
+        const roleColor = message.guild.me.highestRole;
 
         if (args[0].toLowerCase() === "embed") {
             const embed = new MessageEmbed()
