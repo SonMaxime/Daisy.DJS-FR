@@ -1,15 +1,14 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const { promptMessage } = require("../../functions.js");
 
 module.exports = {
     name: "ban",
-    cooldown: 0,
     category: "Commandes de modération",
     description: "Bannis un membre",
     usage: "<id | mention>",
     run: async (client, message, args) => {
-        const logChannel = message.guild.channels.find(c => c.name === "reports") || message.channel;
+        const logChannel = message.guild.channels.cache.find(c => c.name === "reports") || message.channel;
 
         if (message.deletable) message.delete();
 
@@ -51,7 +50,7 @@ module.exports = {
                 .then(m => m.delete(5000));
         }
         
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ff0000")
             .setThumbnail(toBan.user.displayAvatarURL)
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
@@ -60,7 +59,7 @@ module.exports = {
             **- Banni par:** ${message.member} (${message.member.id})
             **- Raison:** ${args.slice(1).join(" ")}`);
 
-        const promptEmbed = new RichEmbed()
+        const promptEmbed = new MessageEmbed()
             .setColor("GREEN")
             .setAuthor(`Cette verification expire dans 30s.`)
             .setDescription(`Voulez vous bannir ${toBan}?`)

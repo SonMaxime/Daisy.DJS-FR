@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     run: async (client, message, args) => {
         if (message.deletable) message.delete();
 
-        let rMember = message.mentions.members.first() || message.guild.members.get(args[0]);
+        let rMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
         if (!rMember)
             return message.reply("Je ne trouve pas cette personne, réessayer.").then(m => m.delete(5000));
@@ -25,7 +25,7 @@ module.exports = {
         if (!channel)
             return message.channel.send("Je ne trouve pas le salon `#reports`.").then(m => m.delete(5000));
 
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ff0000")
             .setTimestamp()
             .setFooter(message.guild.name, message.guild.iconURL)

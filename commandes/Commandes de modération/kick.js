@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { stripIndents } = require("common-tags");
 const { promptMessage } = require("../../functions.js");
 
@@ -49,7 +49,7 @@ module.exports = {
                 .then(m => m.delete(5000));
         }
                 
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ff0000")
             .setThumbnail(toKick.user.displayAvatarURL)
             .setFooter(message.member.displayName, message.author.displayAvatarURL)
@@ -58,7 +58,7 @@ module.exports = {
             **- Kick par:** ${message.member} (${message.member.id})
             **- Raison:** ${args.slice(1).join(" ")}`);
 
-        const promptEmbed = new RichEmbed()
+        const promptEmbed = new MessageEmbed()
             .setColor("GREEN")
             .setAuthor(`Cette vérification sera invalide après 30 secondes.`)
             .setDescription(`Voulez vous kick cette utilisateur ${toKick}?`)
