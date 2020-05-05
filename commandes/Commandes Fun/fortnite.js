@@ -16,7 +16,7 @@ module.exports = {
         if (args[0].toLowerCase() === "store") {
           const store = await ft.store();
 
-            const storeEmbed = new MessageEmbed()
+            const embed = new MessageEmbed()
                 .setColor("#9d4dbb")
                 .setFooter("Boutique du jour", message.author.displayAvatarURL)
                 .setTimestamp();
@@ -31,7 +31,7 @@ module.exports = {
                 **- Image:** [Appuiez](${el.image})`, true)
             });
 
-            message.channel.send(storeEmbed);
+            message.channel.send(embed);
             
         } else {
             const lastWord = args[args.length - 1].toLowerCase();
