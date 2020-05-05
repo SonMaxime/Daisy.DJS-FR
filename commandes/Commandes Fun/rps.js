@@ -1,4 +1,4 @@
-const { RichEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const { promptMessage } = require("../../functions.js");
 
 const chooseArr = ["🗻", "📰", "✂"];
@@ -9,7 +9,7 @@ module.exports = {
     description: "Pierre, Feuille, Ciseaux ! Réagissez a l'emoji pour jouer.",
     usage: "rps",
     run: async (client, message, args) => {
-        const embed = new RichEmbed()
+        const embed = new MessageEmbed()
             .setColor("#ffffff")
             .setFooter(message.guild.me.displayName, client.user.displayAvatarURL)
             .setDescription("Réagissez à l'uns de ces emojis pour jouer.")

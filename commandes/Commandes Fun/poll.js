@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
     name: "poll",
@@ -10,7 +10,7 @@ module.exports = {
         const sayMessage = args.join(" ");
        if (sayMessage.length < 1) return message.channel.send("Veullez provenir un sondage.")
        if (message.member.hasPermission("KICK_MEMBERS")) {
-         const embed = new Discord.RichEmbed()
+         const embed = new MessageEmbed()
          .setColor(0x00A2E8)
          .setFooter(message.guild.name, message.guild.iconURL)
          .setTimestamp()
