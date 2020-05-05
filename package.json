@@ -9,12 +9,12 @@
   "license": "ISC",
   "dependencies": {
     "ascii-table": "0.0.9",
-    "better-discord-antispam-fr": "^2.0.0",
     "circular-json": "^0.5.9",
     "common-tags": "^1.8.0",
-    "discord.js": "^11.6.4",
+    "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "fortnite": "^4.3.2",
+    "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "node-superfetch": "^0.1.10",
     "random-puppy": "^1.1.0",
@@ -24,4 +24,3 @@
   "devDependencies": {},
   "description": ""
 }
-
