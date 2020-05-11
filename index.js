@@ -23,21 +23,6 @@ client.categories = fs.readdirSync("./commandes/");
     require(`./handlers/${handler}`)(client);
 });
 
-const loadEvents = (dir = "./events/") => {
-    fs.readdirSync(dir).forEach(dirs => {
-      const events = fs.readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith(".js"));
-  
-      for (const event of events) {
-        const evt = require(`${dir}/${dirs}/${event}`);
-        const evtName = event.split(".")[0];
-        client.on(evtName, evt.bind(null, client));
-        console.log(`Evenement chargé: ${evtName}`);
-      };
-    });
-  };
-  
-loadEvents();
-
     // Mise en ligne du bot
 
 client.on("ready", () => {
