@@ -20,7 +20,7 @@ module.exports = {
         if (!args[1])
             return message.channel.send("Veuillez provenir une raison a votre report.").then(m => m.delete(5000));
         
-        const channel = message.guild.channels.find(c => c.name === "reports")
+        const channel = message.guild.channels.cache.find(c => c.name === "reports")
             
         if (!channel)
             return message.channel.send("Je ne trouve pas le salon `#reports`.").then(m => m.delete(5000));

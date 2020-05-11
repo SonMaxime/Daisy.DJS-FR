@@ -7,6 +7,10 @@ const client = new Client({
 
 const prefix = ".";
 
+config({
+    path: __dirname + "/.env"
+});
+
    // Chargement des commandes
 
 client.commands = new Collection();
@@ -15,13 +19,24 @@ client.aliases = new Collection();
 
 client.categories = fs.readdirSync("./commandes/");
 
-config({
-    path: __dirname + "/.env"
-});
-
 ["command"].forEach(handler => {
     require(`./handlers/${handler}`)(client);
 });
+
+const loadEvents = (dir = "./events/") => {
+    fs.readdirSync(dir).forEach(dirs => {
+      const events = fs.readdirSync(`${dir}/${dirs}/`).filter(files => files.endsWith(".js"));
+  
+      for (const event of events) {
+        const evt = require(`${dir}/${dirs}/${event}`);
+        const evtName = event.split(".")[0];
+        client.on(evtName, evt.bind(null, client));
+        console.log(`Evenement chargé: ${evtName}`);
+      };
+    });
+  };
+  
+loadEvents();
 
     // Mise en ligne du bot
 
@@ -43,14 +58,14 @@ client.on('guildMemberAdd', member => {
     let embed = new MessageEmbed()
         .setDescription(':tada: **' + member.user.username + '** a rejoint ' + member.guild.name)
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount + '.')
-    member.guild.channels.get('690550169615204413').send(embed)
+    member.guild.channels.cache.get('690550169615204413').send(embed)
 });
 
 client.on('guildMemberRemove', member => {
     let embed = new MessageEmbed()
         .setDescription(':cry: **' + member.user.username + '** a quitté ' + member.guild.name + '.')
         .setFooter('Nous sommes maintenant ' + member.guild.memberCount)
-    member.guild.channels.get('690550169615204413').send(embed)
+    member.guild.channels.cache.get('690550169615204413').send(embed)
  
 });
 
@@ -88,7 +103,7 @@ client.on("guildMemberAdd", (member) => {
 });
 
 client.on("message", (message) => {
-  if (message.content == (prefix + "verify")) {
+  if (message.content == (config.prefix + "verify")) {
     message.delete();
     message.channel.send("C'est bon tu peux passer. :tada:").then(msg => {
       msg.delete(2000);
@@ -106,10 +121,10 @@ client.on("message", async message => {
 
     if (message.author.bot) return;
     if (!message.guild) return;
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(config.prefix)) return;
     if (!message.member) message.member = await message.guild.fetchMember(message);
     
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
         
     if (cmd.length === 0) return;

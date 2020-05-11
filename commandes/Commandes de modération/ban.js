@@ -63,7 +63,7 @@ module.exports = {
             .setColor("GREEN")
             .setAuthor(`Cette verification expire dans 30s.`)
             .setDescription(`Voulez vous bannir ${toBan}?`)
-            .setImage('https://media.giphy.com/media/fV2nn1TcXTSzUzxUMC/giphy.gif')
+            .setImage('https://media.discordapp.net/attachments/702532914151161906/707153482670538752/ezgif.com-add-text.gif')
 
         await message.channel.send(promptEmbed).then(async msg => {
             const emoji = await promptMessage(msg, message.author, 30, ["✅", "❌"]);
