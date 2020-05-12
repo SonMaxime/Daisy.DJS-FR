@@ -10,7 +10,7 @@ module.exports = {
 
     let user = message.guild.member(message.mentions.users.first());
     let muteRole = message.guild.roles.cache.find(r => r.name === 'Muté');
-    let unmuteRole = message.guild.roles.cache.find(r => r.name === 'les twittos');
+    let unmuteRole = message.guild.roles.cache.find(r => r.name === 'Membre');
     let muteTime = (args[1] || '60s');
 
     if (user.roles.cache.has(muteRole.id)) return message.reply('le membre est déjà mute.')
