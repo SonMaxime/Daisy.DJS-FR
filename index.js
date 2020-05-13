@@ -27,7 +27,7 @@ client.categories = fs.readdirSync("./commandes/");
 
 client.on("ready", () => {
     console.log(`Hey, ${client.user.username} est en ligne`);
-    client.user.setPresence({ activity: { name: '.help | by SonMaxime' }, status: 'invisible' })
+    client.user.setPresence({ activity: { name: '.help | by SonMaxime' }, status: 'dnd' })
     .catch(console.error);
 });
    
