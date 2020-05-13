@@ -27,16 +27,10 @@ client.categories = fs.readdirSync("./commandes/");
 
 client.on("ready", () => {
     console.log(`Hey, ${client.user.username} est en ligne`);
-
-    client.user.setPresence({
-        status: "online",
-        game: {
-            name: ".help | by SonMaxime",
-            type: "STREAMING"
-        }
-    }); 
+    client.user.setPresence({ activity: { name: '.help | by SonMaxime' }, status: 'invisible' })
+    .catch(console.error);
 });
-
+   
    // Système de bienvenue automatique
 
 client.on('guildMemberAdd', member => {
