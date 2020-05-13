@@ -8,7 +8,7 @@ module.exports = {
     usage: '[@user]',
     run: async (client, message, args) => {
         const embed = new MessageEmbed()
-        .setImage(message.member.displayAvatarURL)
+        .setImage(message.author.displayAvatarURL())
         .setColor('#275BF0')
         
         message.channel.send(embed)
