@@ -80,7 +80,7 @@ module.exports = {
             } else if (emoji === "❌") {
                 msg.delete();
 
-                message.reply(`Ban annué.`)
+                message.reply(`Ban annulé.`)
                     .then(m => m.delete(10000));
             }
         });
