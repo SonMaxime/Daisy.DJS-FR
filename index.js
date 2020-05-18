@@ -78,20 +78,18 @@ client.on('guildMemberRemove', member => {
     // Système de validation de réglement
 
 client.on("guildMemberAdd", (member) => {
-  member.addRole(member.guild.roles.cache.find(role => role.name === "Verifying"));
+  member.roles.add('695645685898543205');
 });
 
 client.on("message", (message) => {
-  if (message.content == (config.prefix + "verify")) {
-    message.delete();
-    message.channel.send("C'est bon tu peux passer. :tada:").then(msg => {
-      msg.delete(2000);
-      setTimeout(() => {
-        message.member.removeRole(message.guild.roles.cache.find(role => role.name === "Verifying"));
-        message.member.addRole('690552702110924801');
-      });
-    });
-  }
+    if (message.content == (prefix + "verify")) {
+      message.delete();
+      message.channel.send("C'est bon tu peux passer. :tada:").then(message => message.delete(2000));
+        setTimeout(() => {
+          message.member.roles.remove('695645685898543205');
+          message.member.roles.add('690552702110924801');
+        });
+    }
 });
 
     // Système d'execution de commande
