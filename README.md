@@ -1,4 +1,4 @@
-# Daisy :
+# Midnight :
 [![Discord Server](https://discordapp.com/api/guilds/653651087722807318/embed.png)](https://discord.gg/VH3xEZY)
 [![Build With](https://img.shields.io/npm/v/discord.js.svg?maxAge=3600)](https://www.npmjs.com/package/discord.js)
 [![Dependencies](https://img.shields.io/david/expressjs/express.svg)](https://github.com/SonMaxime/Daisy.DJS-FR/blob/master/package.json)
@@ -11,7 +11,7 @@
 - Les modules déjà pré-installés dans le fichier `package.json`.
 
 # Utilisation :
-Comment fonctionne Daisy ? C'est simple comme bonjour ! 
+Comment fonctionne Midnight ? C'est simple comme bonjour ! 
 Utilisez la commande .help pour vous y retrouver,vous pouvez même avoir des informations supplémentaires sur une commande en question. Ex. : .help meme 
 
 # Avec quoi est conçu ce bot ? 
