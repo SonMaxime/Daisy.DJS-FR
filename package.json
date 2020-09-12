@@ -15,7 +15,7 @@
     "dotenv": "^8.2.0",
     "fortnite": "^4.3.2",
     "ms": "^2.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-superfetch": "^0.1.10",
     "pm2": "^4.4.0",
     "random-puppy": "^1.1.0",
