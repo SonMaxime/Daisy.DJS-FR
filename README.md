@@ -1,6 +1,6 @@
 # Midnight :
 <p>
-  <a href="https://github.com/SonMaxime/ZeldaXP/master/LICENSE" target="_blank">
+  <a href="https://github.com/SonMaxime/Midnight.DJS-FR/master/LICENSE" target="_blank">
     <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
   </a>
   <a href="https://twitter.com/LeVraiSonMaxime" target="_blank">
