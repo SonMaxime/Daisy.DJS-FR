@@ -1,4 +1,13 @@
 # Midnight :
+<p>
+  <a href="https://github.com/SonMaxime/ZeldaXP/master/LICENSE" target="_blank">
+    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
+  </a>
+  <a href="https://twitter.com/LeVraiSonMaxime" target="_blank">
+    <img alt="Twitter: LeVraiSonMaxime" src="https://img.shields.io/twitter/follow/LeVraiSonMaxime.svg?style=social" />
+  </a>
+</p>
+
 [![Discord Server](https://discordapp.com/api/guilds/653651087722807318/embed.png)](https://discord.gg/AFsckMy)
 [![Build With](https://img.shields.io/npm/v/discord.js.svg?maxAge=3600)](https://www.npmjs.com/package/discord.js)
 [![Dependencies](https://img.shields.io/david/expressjs/express.svg)](https://github.com/SonMaxime/Daisy.DJS-FR/blob/master/package.json)
