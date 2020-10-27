@@ -8,7 +8,7 @@
   </a>
 </p>
 
-[![Discord Server](https://discordapp.com/api/guilds/653651087722807318/embed.png)](https://discord.gg/78M3hSt)
+[![Discord Bots](https://top.gg/api/widget/720554665812689017.svg)](https://top.gg/bot/720554665812689017)
 [![Build With](https://img.shields.io/npm/v/discord.js.svg?maxAge=3600)](https://www.npmjs.com/package/discord.js)
 [![Dependencies](https://img.shields.io/david/expressjs/express.svg)](https://github.com/SonMaxime/Daisy.DJS-FR/blob/master/package.json)
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
