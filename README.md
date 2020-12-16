@@ -46,4 +46,4 @@ Lien d'invitation du bot : https://discordapp.com/oauth2/authorize?client_id=537
 En cas de problème que ce soit avec le bot ou le code source merci de me le faire savoir via ces moyens de communication ci dessous :
 
 - Discord : @SonMaxime.#9355
-- Twitter : @LeVraiSonMaxime
+- Twitter : @sonmaximeapx
