@@ -3,8 +3,8 @@
   <a href="https://github.com/SonMaxime/Midnight.DJS-FR/master/LICENSE" target="_blank">
     <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
   </a>
-  <a href="https://twitter.com/LeVraiSonMaxime" target="_blank">
-    <img alt="Twitter: LeVraiSonMaxime" src="https://img.shields.io/twitter/follow/LeVraiSonMaxime.svg?style=social" />
+  <a href="https://twitter.com/SonMaximeAPX" target="_blank">
+    <img alt="Twitter: sonmaximeapx" src="https://img.shields.io/twitter/follow/sonmaximeapx.svg?style=social" />
   </a>
 </p>
 
